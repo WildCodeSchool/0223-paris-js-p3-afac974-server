@@ -1,4 +1,4 @@
-const { findAll, findOneUser } = require('../model/userModel.js')
+const { findAll, findOneUser, addUser } = require('../model/userModel.js')
 
 const getAll = (req, res) => {
     findAll()
@@ -28,4 +28,23 @@ const getOneUser = (req, res) => {
         .catch((err) => res.status(500).json({ message: "Servor error" }))
 }
 
-module.exports = {getAll, getOneUser}
+// const createUser = (user) => {
+//     const { firstname , lastname, user_name, password, mail, isAdmin, profile_picture } = user
+//     return db 
+//         .query("insert into user (firstname , lastname, user_name, password, mail, isAdmin, profile_picture) values (?, ?, ?, ?, ?, ?, ?)",
+//         [firstname , lastname, user_name, password, mail, isAdmin, profile_picture])
+//         .then(([data]) => {
+//             return { id: data.insertId, ...user}
+//         })
+//         .catch((err) => res.status(500).json({ message: "Servor error" }))
+// }
+ 
+const createUser = (req, res) => {
+    const user = req.body
+  
+    addUser(user)
+      .then((result) => res.status(201).json(result))
+      .catch((err) => res.status(500).json({ message: "Server error" }))
+  }
+
+module.exports = {getAll, getOneUser, createUser}

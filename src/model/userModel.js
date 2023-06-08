@@ -24,5 +24,19 @@ const findOneUser = (id) => {
         })
 }
 
-module.exports = { findAll, findOneUser }
+
+const addUser = (user) => {
+    const { firstname , lastname, user_name, password, mail, isAdmin, profile_picture } = user
+    return db 
+        .query("insert into user (firstname , lastname, user_name, password, mail, isAdmin, profile_picture) values (?, ?, ?, ?, ?, ?, ?)",
+        [firstname , lastname, user_name, password, mail, isAdmin, profile_picture])
+        .then(([data]) => {
+            return { id: data.insertId, ...user}
+        })
+        .catch((err) => {
+            console.error(err); })
+}
+
+
+module.exports = { findAll, findOneUser, addUser }
 
