@@ -1,5 +1,5 @@
 const db = require('../model/db.js')
-
+// ici on fait les fonction
 
 
 const findAll = () => {
@@ -13,5 +13,16 @@ const findAll = () => {
         })
 }
 
-module.exports = { findAll }
+const findOneUser = (id) => {
+    return db
+        .query('select * from user where id = ?', [id])
+        .then(([data]) => {
+            return data
+        })
+        .catch((err) => {
+            console.error('err', err)
+        })
+}
+
+module.exports = { findAll, findOneUser }
 

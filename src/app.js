@@ -7,10 +7,12 @@ const router = require('./routes/index.routes');
 
 const port = process.env.PORT || 8000;
 
-const {getAll} = require('./controller/userController')
+const {getAll, getOneUser} = require('./controller/userController')
 
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
+
+// pour éviter les confilts entre les ports backend et frontend :
 app.use(cors())
 app.use('/api', router);
 
@@ -19,6 +21,7 @@ app.get("/", (req, res) => {
 });
 
 app.get('/users', getAll)
+app.get('/users/:id', getOneUser )
 
 app.listen(port, () => {
   console.log(`Server listening on port ${port}`);
