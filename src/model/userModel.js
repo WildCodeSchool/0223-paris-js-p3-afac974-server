@@ -15,8 +15,7 @@ const findAll = () => {
 
 
 const modifyOneUser= (user, userId)=>{
-    console.log('hello', user)
-    console.log('hello', userId)
+    
     return db
     .query('update user set ? where id = ?', [user, userId])
     .then(([result])=>{
