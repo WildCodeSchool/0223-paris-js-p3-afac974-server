@@ -22,7 +22,7 @@ app.get("/", (req, res) => {
 
 app.get('/users', getAll)
 app.get('/users/:id', getOneUser )
-app.post('/users/:id', createUser)
+app.post('/users', createUser)
 
 app.listen(port, () => {
   console.log(`Server listening on port ${port}`);
