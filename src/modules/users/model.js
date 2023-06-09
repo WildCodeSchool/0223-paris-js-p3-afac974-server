@@ -1,4 +1,4 @@
-const db = require('../model/db.js')
+const db = require('../../config/database')
 // ici on fait les fonction
 
 

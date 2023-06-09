@@ -3,7 +3,7 @@ const {
   findOneUser,
   modifyOneUser,
   addUser,
-} = require("../model/userModel.js");
+} = require("./model");
 
 const getAll = (req, res) => {
   findAll()
