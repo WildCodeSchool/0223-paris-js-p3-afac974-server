@@ -5,6 +5,7 @@ require('dotenv').config()
 
 const { DB_HOST, DB_USER, DB_PASSWORD, DB_NAME} = process.env
 
+
 const database = mysql.createPool({
     host: DB_HOST,
     user: DB_USER,
@@ -12,6 +13,7 @@ const database = mysql.createPool({
     database: DB_NAME,
 })
 
+// utile pour savoir si on est bien connecté à la BDD mais ce n'est pas obbligatoire
 database.getConnection()
   .then(result => {
     console.log('Connected to the MySQL server.');
