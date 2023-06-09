@@ -7,9 +7,7 @@ const router = require('./routes/index.routes');
 
 const port = process.env.PORT || 8000;
 
-
-const {getAll, getOneUser, createUser, modifydOneUser} = require('./controller/userController');
-
+const {getAll, getOneUser, createUser, putOneUser} = require('./controller/userController');
 
 
 app.use(express.json());
@@ -27,8 +25,7 @@ app.get("/", (req, res) => {
 app.get('/users', getAll)
 app.get('/users/:id', getOneUser )
 app.post('/users', createUser)
-app.put('/users/:id', modifydOneUser)
-
+app.put('/users/:id', putOneUser)
 
 
 app.listen(port, () => {

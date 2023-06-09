@@ -14,11 +14,13 @@ const findAll = () => {
 }
 
 
-const modifyOneUser= (user)=>{
+const modifyOneUser= (user, userId)=>{
+    console.log('hello', user)
+    console.log('hello', userId)
     return db
-    .query('select * from user where user = ?', [user])
-    .then(([data])=>{
-        return data
+    .query('update user set ? where id = ?', [user, userId])
+    .then(([result])=>{
+        return result
     })
     .catch((err)=>{
         console.error('err', err)
@@ -37,6 +39,7 @@ const findOneUser = (id) => {
             console.error('err', err)
         })
 }
+
 
 
 const addUser = (user) => {
