@@ -25,13 +25,10 @@ app.get("/", (req, res) => {
 });
 
 app.get('/users', getAll)
-
-
-
-
 app.get('/users/:id', getOneUser )
 app.post('/users', createUser)
 app.put('/users/:id', modifydOneUser)
+
 
 app.listen(port, () => {
   console.log(`Server listening on port ${port}`);
