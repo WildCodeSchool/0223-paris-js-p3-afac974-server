@@ -13,5 +13,16 @@ const findAll = () => {
         })
 }
 
-module.exports = { findAll }
+const modifydAll= ()=>{
+    return db
+    .query('select * from user')
+    .then(([data])=>{
+        return data
+    })
+    .catch((err)=>{
+        console.error('err', err)
+    })
+}
+
+module.exports = { findAll, modifydAll }
 
