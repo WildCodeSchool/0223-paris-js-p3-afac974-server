@@ -1,12 +1,12 @@
 const {
-  findAll,
+  findAllUser,
   findOneUser,
   modifyOneUser,
   addUser,
 } = require("./model");
 
-const getAll = (req, res) => {
-  findAll()
+const getAllUser = (req, res) => {
+  findAllUser()
     .then((data) => res.json(data))
     .catch((err) => res.status(500).json({ message: "Server error" }));
 };
@@ -52,4 +52,4 @@ const getOneUser = (req, res) => {
     .catch((err) => res.status(500).json({ message: "Servor error" }));
 };
 
-module.exports = { getAll, getOneUser, putOneUser, createUser };
+module.exports = { getAllUser, getOneUser, putOneUser, createUser };

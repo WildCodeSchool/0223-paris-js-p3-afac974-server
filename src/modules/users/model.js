@@ -2,7 +2,7 @@ const db = require('../../config/database')
 // ici on fait les fonction
 
 
-const findAll = () => {
+const findAllUser = () => {
     return db
         .query('select * from user')
         .then(([data]) => {
@@ -54,6 +54,6 @@ const addUser = (user) => {
 }
 
 
-module.exports = { findAll, findOneUser, addUser, modifyOneUser}
+module.exports = { findAllUser, findOneUser, addUser, modifyOneUser}
 
 
