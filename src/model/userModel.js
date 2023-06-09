@@ -14,9 +14,9 @@ const findAll = () => {
 }
 
 
-const modifyOne= ()=>{
+const modifyOneUser= (user)=>{
     return db
-    .query('select * from user where user=?', [user])
+    .query('select * from user where user = ?', [user])
     .then(([data])=>{
         return data
     })
@@ -52,6 +52,6 @@ const addUser = (user) => {
 }
 
 
-module.exports = { findAll, findOneUser, addUser, modifydAll}
->>>>>>> b875447e582a524098bfdb7625acb1fbf1956408
+module.exports = { findAll, findOneUser, addUser, modifyOneUser}
+
 
