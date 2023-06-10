@@ -3,6 +3,7 @@ const {
     findOneCategory,
     modifyOneCategory,
     addCategory,
+    removeCategory,
   } = require("./model");
   
   const getAllCategory = (req, res) => {
@@ -27,7 +28,7 @@ const {
   const createCategory = (req, res) => {
     const category = req.body;
   
-    addCategory(user)
+    addCategory(category)
       .then((result) => res.status(201).json(result))
       .catch((err) => res.status(500).json({ message: "Server error" }));
   };
@@ -51,6 +52,23 @@ const {
       })
       .catch((err) => res.status(500).json({ message: "Servor error" }));
   };
+
+  const deleteCategory = (req, res) => {
+    const id = req.params.id;
+    removeCategory(id)
+    .then((data) => {   
+        if (data.affectedRows === 1) {
+            res.sendStatus(204);
+        } else {
+            res.status(404).json({ message : "No category found"})
+        }
+    })
+    .catch((err) => res.status(500).json({ message :  "Server error"}))
+}
+
+
+
   
-  module.exports = { getAllCategory, getOneCategory, putOneCategory, createCategory };
+  
+  module.exports = { getAllCategory, getOneCategory, putOneCategory, createCategory , deleteCategory};
   
