@@ -30,11 +30,21 @@ const addAuthor = (author) => {
 
 const modifyOneAuthor = (author, authorId) => {
     return db
-        .query('update author set ? where id = ?', [author, authorId])
+        .execute('update author set ? where id = ?', [author, authorId])
         .then(([result]) => {
             return result
         })
         .catch((err) => console.log(err))
 }
 
-module.exports = {findAll, findOneAuthor, addAuthor, modifyOneAuthor}
+const removeOneAuthor = (id) => {
+    return db
+        .execute('delete from author where id = ?', [id])
+        .then(([data]) => {
+            console.log(data)
+            return data
+        })
+        .catch((err) => console.log(err))
+}
+
+module.exports = {findAll, findOneAuthor, addAuthor, modifyOneAuthor, removeOneAuthor}

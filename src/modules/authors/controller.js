@@ -1,4 +1,4 @@
-const {findAll, findOneAuthor, addAuthor, modifyOneAuthor} = require('./model')
+const {findAll, findOneAuthor, addAuthor, modifyOneAuthor, removeOneAuthor} = require('./model')
 
 const getAll = (req, res) => {
     findAll()
@@ -54,4 +54,26 @@ const editOneAuthor = (req, res) => {
 
 }
 
-module.exports = { getAll, getOneAuthor, createAuthor, editOneAuthor }
+const deleteOneAuthor = (req, res) => {
+    const id = parseInt(req.params.id)
+
+    if (isNaN(id)) {
+        res.status(400).json({ message: "wrong id type !" })
+    }
+
+    removeOneAuthor(id) 
+        .then((result) => {
+            console.log(result);
+            if(result.affectedRows === 1) {
+                res.sendStatus(204)
+            } else {
+                res.status(404).json({ message: "No author found with this id !" })
+            }
+        })
+        .catch((err) => res.status(500).json({ message: "Server error" }))
+
+
+
+}
+
+module.exports = { getAll, getOneAuthor, createAuthor, editOneAuthor,deleteOneAuthor }
