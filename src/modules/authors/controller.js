@@ -63,7 +63,6 @@ const deleteOneAuthor = (req, res) => {
 
     removeOneAuthor(id) 
         .then((result) => {
-            console.log(result);
             if(result.affectedRows === 1) {
                 res.sendStatus(204)
             } else {

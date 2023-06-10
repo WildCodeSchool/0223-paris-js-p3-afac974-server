@@ -30,7 +30,7 @@ const addAuthor = (author) => {
 
 const modifyOneAuthor = (author, authorId) => {
     return db
-        .execute('update author set ? where id = ?', [author, authorId])
+        .query('update author set ? where id = ?', [author, authorId])
         .then(([result]) => {
             return result
         })
@@ -41,7 +41,6 @@ const removeOneAuthor = (id) => {
     return db
         .execute('delete from author where id = ?', [id])
         .then(([data]) => {
-            console.log(data)
             return data
         })
         .catch((err) => console.log(err))
