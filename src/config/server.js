@@ -8,8 +8,10 @@ app.use(express.urlencoded({extended: true}));
 app.use(cors())
 
 const artRouter = require("../modules/arts")
+const authorRouter = require('../modules/authors')
 
 app.use("/arts", artRouter)
+app.use('/authors', authorRouter)
 
 
 module.exports = app;
