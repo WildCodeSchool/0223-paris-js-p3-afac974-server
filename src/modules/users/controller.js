@@ -3,6 +3,7 @@ const {
   findOneUser,
   modifyOneUser,
   addUser,
+  
 } = require("./model");
 
 const getAllUser = (req, res) => {
