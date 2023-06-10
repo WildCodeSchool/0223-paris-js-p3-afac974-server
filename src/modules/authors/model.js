@@ -28,4 +28,13 @@ const addAuthor = (author) => {
         .catch((err) => console.log('err', err))
 }
 
-module.exports = {findAll, findOneAuthor, addAuthor}
+const modifyOneAuthor = (author, authorId) => {
+    return db
+        .query('update author set ? where id = ?', [author, authorId])
+        .then(([result]) => {
+            return result
+        })
+        .catch((err) => console.log(err))
+}
+
+module.exports = {findAll, findOneAuthor, addAuthor, modifyOneAuthor}
