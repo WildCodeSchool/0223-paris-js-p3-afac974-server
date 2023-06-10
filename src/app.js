@@ -7,7 +7,7 @@ const router = require('./routes/index.routes');
 
 const port = process.env.PORT || 8000;
 
-const {getAll, getOneUser, createUser} = require('./controller/userController')
+const {getAll, getOneUser, createUser,deleteUser} = require('./controller/userController')
 
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
@@ -23,6 +23,7 @@ app.get("/", (req, res) => {
 app.get('/users', getAll)
 app.get('/users/:id', getOneUser )
 app.post('/users', createUser)
+app.delete('/users/:id',deleteUser)
 
 app.listen(port, () => {
   console.log(`Server listening on port ${port}`);

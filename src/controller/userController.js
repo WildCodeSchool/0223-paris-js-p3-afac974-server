@@ -1,4 +1,4 @@
-const { findAll, findOneUser, addUser } = require('../model/userModel.js')
+const { findAll, findOneUser, addUser,removeUser } = require('../model/userModel.js')
 
 const getAll = (req, res) => {
     findAll()
@@ -47,4 +47,20 @@ const createUser = (req, res) => {
       .catch((err) => res.status(500).json({ message: "Server error" }))
   }
 
-module.exports = {getAll, getOneUser, createUser}
+  const deleteUser = (req , res) =>{
+    const id = parseInt(req.params.id)
+    if(isNaN(id)){
+        res.status(400).json({message : "wrong id type"})
+    }
+    removeUser(id)
+    .then((result) => {
+        if (result.affectedRows === 1) {
+          res.sendStatus(204)
+        } else {
+          res.status(404).json({ message: "No user found with this id !" })
+        }
+      })
+      .catch((err) => res.status(500).json({ message: "Server error" })) 
+     }
+
+module.exports = {getAll, getOneUser, createUser, deleteUser}

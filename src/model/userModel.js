@@ -37,6 +37,16 @@ const addUser = (user) => {
             console.error(err); })
 }
 
+const removeUser = (id)=>{
+    return db
+    .execute("delete from user Where id = ? ",[id])
+    .then(([data]) => data )
+    .catch((err) => {
+       console.error(err)
+        })
+        
+    }
 
-module.exports = { findAll, findOneUser, addUser }
+
+module.exports = { findAll, findOneUser, addUser,removeUser }
 
