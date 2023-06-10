@@ -1,4 +1,4 @@
-const db = require('../model/db.js')
+const db = require('../../config/database')
 // ici on fait les fonction
 
 
@@ -13,6 +13,21 @@ const findAll = () => {
         })
 }
 
+
+const modifyOneUser= (user, userId)=>{
+    
+    return db
+    .query('update user set ? where id = ?', [user, userId])
+    .then(([result])=>{
+        return result
+    })
+    .catch((err)=>{
+        console.error('err', err)
+    })
+}
+
+
+
 const findOneUser = (id) => {
     return db
         .query('select * from user where id = ?', [id])
@@ -23,6 +38,7 @@ const findOneUser = (id) => {
             console.error('err', err)
         })
 }
+
 
 
 const addUser = (user) => {
@@ -48,5 +64,6 @@ const removeUser = (id)=>{
     }
 
 
-module.exports = { findAll, findOneUser, addUser,removeUser }
+module.exports = { findAll, findOneUser, addUser,removeUser, modifyOneUser }
+
 
