@@ -20,7 +20,7 @@ const getOneAuthor = (req, res) => {
             if (data) {
                 res.json(data)
             } else {
-                res.status(404).json({ message: "No author found with this id"})
+                res.status(404).json({ message: "No author found with this id!"})
             }
         })
         .catch((err) => res.status(500).json({ message : "Server error"}))
