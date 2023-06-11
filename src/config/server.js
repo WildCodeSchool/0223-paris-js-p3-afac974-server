@@ -8,10 +8,10 @@ app.use(express.urlencoded({extended: true}));
 app.use(cors())
 
 
-const authorRouter = require('../modules/authors')
+const techniqueRouter = require('../modules/technique')
 
 
-app.use('/authors', authorRouter)
+app.use('/technique', techniqueRouter)
 
 
 module.exports = app;
