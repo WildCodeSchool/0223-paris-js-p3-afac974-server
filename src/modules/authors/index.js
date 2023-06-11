@@ -1,8 +1,8 @@
 const router = require('express').Router()
 
-const {getAll, getOneAuthor, createAuthor, editOneAuthor, deleteOneAuthor} = require('./controller')
+const {getAllAuthor, getOneAuthor, createAuthor, editOneAuthor, deleteOneAuthor} = require('./controller')
 
-router.get('/', getAll)
+router.get('/', getAllAuthor)
 router.get('/:id', getOneAuthor)
 router.post('/', createAuthor)
 router.put('/:id', editOneAuthor)

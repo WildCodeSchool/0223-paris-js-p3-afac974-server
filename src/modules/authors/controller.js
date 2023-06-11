@@ -1,7 +1,7 @@
-const {findAll, findOneAuthor, addAuthor, modifyOneAuthor, removeOneAuthor} = require('./model')
+const {findAllAuthor, findOneAuthor, addAuthor, modifyOneAuthor, removeOneAuthor} = require('./model')
 
-const getAll = (req, res) => {
-    findAll()
+const getAllAuthor = (req, res) => {
+    findAllAuthor()
         .then((data) => {
             res.json(data)
         })
@@ -51,7 +51,6 @@ const editOneAuthor = (req, res) => {
             }
         })
         .catch((err) => res.status(500).json({ message: "Server error" }));
-
 }
 
 const deleteOneAuthor = (req, res) => {
@@ -70,9 +69,6 @@ const deleteOneAuthor = (req, res) => {
             }
         })
         .catch((err) => res.status(500).json({ message: "Server error" }))
-
-
-
 }
 
-module.exports = { getAll, getOneAuthor, createAuthor, editOneAuthor,deleteOneAuthor }
+module.exports = { getAllAuthor, getOneAuthor, createAuthor, editOneAuthor,deleteOneAuthor }

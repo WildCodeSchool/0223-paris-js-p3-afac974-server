@@ -1,6 +1,6 @@
 const db = require('../../config/database')
 
-const findAll = () => {
+const findAllAuthor = () => {
     return db
         .execute('select * from author')
         .then(([data]) => {
@@ -46,4 +46,4 @@ const removeOneAuthor = (id) => {
         .catch((err) => console.log(err))
 }
 
-module.exports = {findAll, findOneAuthor, addAuthor, modifyOneAuthor, removeOneAuthor}
+module.exports = {findAllAuthor, findOneAuthor, addAuthor, modifyOneAuthor, removeOneAuthor}
