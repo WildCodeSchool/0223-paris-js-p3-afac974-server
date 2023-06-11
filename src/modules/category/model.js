@@ -35,8 +35,7 @@ const addCategory = (category) => {
             console.error(err); })
 }
 
-
-const modifyOneCategory = (category, categoryId)=>{
+const modifyOneCategory = (category, categoryId) => {
     return db
     .query('update category set ? where id = ?', [category, categoryId])
     .then(([result])=>{
@@ -60,4 +59,4 @@ const removeCategory = (id) => {
 } 
 
 
-module.exports = { findAllCategory, findOneCategory, addCategory, modifyOneCategory, removeCategory};
+module.exports = { findAllCategory, findOneCategory, addCategory, modifyOneCategory, removeCategory };

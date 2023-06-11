@@ -66,9 +66,5 @@ const {
     .catch((err) => res.status(500).json({ message :  "Server error"}))
 }
 
-
-
-  
-  
-  module.exports = { getAllCategory, getOneCategory, putOneCategory, createCategory , deleteCategory};
+module.exports = { getAllCategory, getOneCategory, putOneCategory, createCategory , deleteCategory};
   
