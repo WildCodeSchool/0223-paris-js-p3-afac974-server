@@ -52,9 +52,10 @@ const getOneUser = (req, res) => {
     })
     .catch((err) => res.status(500).json({ message: "Servor error" }));
 };
-const deleteUser = (req , res) =>{
+
+const deleteUser = (req , res) => {
   const id = parseInt(req.params.id)
-  if(isNaN(id)){
+  if (isNaN(id)) {
       res.status(400).json({message : "wrong id type"})
   }
   removeUser(id)
@@ -68,4 +69,4 @@ const deleteUser = (req , res) =>{
     .catch((err) => res.status(500).json({ message: "Server error" })) 
    }
 
-module.exports = { getAll, getOneUser, putOneUser, createUser,deleteUser };
+module.exports = { getAll, getOneUser, putOneUser, createUser, deleteUser };

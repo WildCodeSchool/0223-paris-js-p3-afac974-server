@@ -1,7 +1,6 @@
 const db = require('../../config/database')
 // ici on fait les fonction
 
-
 const findAll = () => {
     return db
         .query('select * from user')
@@ -13,20 +12,16 @@ const findAll = () => {
         })
 }
 
-
-const modifyOneUser= (user, userId)=>{
-    
+const modifyOneUser = (user, userId) => {
     return db
-    .query('update user set ? where id = ?', [user, userId])
-    .then(([result])=>{
-        return result
-    })
-    .catch((err)=>{
-        console.error('err', err)
-    })
+        .query('update user set ? where id = ?', [user, userId])
+        .then(([result])=>{
+            return result
+        })
+        .catch((err)=>{
+            console.error('err', err)
+        })
 }
-
-
 
 const findOneUser = (id) => {
     return db
@@ -38,8 +33,6 @@ const findOneUser = (id) => {
             console.error('err', err)
         })
 }
-
-
 
 const addUser = (user) => {
     const { firstname , lastname, user_name, password, mail, isAdmin, profile_picture } = user
@@ -53,15 +46,14 @@ const addUser = (user) => {
             console.error(err); })
 }
 
-const removeUser = (id)=>{
+const removeUser = (id) => {
     return db
-    .execute("delete from user Where id = ? ",[id])
-    .then(([data]) => data )
-    .catch((err) => {
-       console.error(err)
-        })
-        
-    }
+        .execute("delete from user Where id = ? ",[id])
+        .then(([data]) => data )
+        .catch((err) => {
+        console.error(err)
+            })
+}
 
 
 module.exports = { findAll, findOneUser, addUser,removeUser, modifyOneUser }
