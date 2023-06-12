@@ -7,9 +7,11 @@ app.use(express.urlencoded({extended: true}));
 // pour éviter les confilts entre les ports backend et frontend :
 app.use(cors())
 
-const artRouter = require("../modules/arts")
 
-app.use("/arts", artRouter)
+const techniqueRouter = require('../modules/technique')
+
+
+app.use('/technique', techniqueRouter)
 
 
 module.exports = app;
