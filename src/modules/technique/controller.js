@@ -1,3 +1,4 @@
+<<<<<<< HEAD:src/modules/technique/controller.js
 const { 
     findAllTech, 
     findOneTech, 
@@ -12,6 +13,16 @@ const getAllTech = (req, res) => {
         res.json(data)
     })
     .catch((err) => res.status(500).json({ message: "Server error"}))
+=======
+const {findAllAuthor, findOneAuthor, addAuthor, modifyOneAuthor, removeOneAuthor} = require('./model')
+
+const getAllAuthor = (req, res) => {
+    findAllAuthor()
+        .then((data) => {
+            res.json(data)
+        })
+        .catch((err) => res.status(500).json({ message : "Server error"}))
+>>>>>>> 75757203805e5f9845a24fda02b6b421b00f4ce3:src/modules/authors/controller.js
 }
 
 const getOneTech = (req, res) => {
@@ -77,6 +88,7 @@ const deleteOneTech = (req, res) => {
         .catch((err) => res.status(500).json({ message: "Server error" }))
 }
 
+<<<<<<< HEAD:src/modules/technique/controller.js
 
 
 module.exports = { 
@@ -86,3 +98,6 @@ module.exports = {
     editOneTech,
     deleteOneTech
 };
+=======
+module.exports = { getAllAuthor, getOneAuthor, createAuthor, editOneAuthor,deleteOneAuthor }
+>>>>>>> 75757203805e5f9845a24fda02b6b421b00f4ce3:src/modules/authors/controller.js
