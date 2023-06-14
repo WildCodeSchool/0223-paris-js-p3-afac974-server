@@ -6,6 +6,8 @@ const {
     removeOneTech 
 } = require('./model');
 
+const testasupprimer = "test";
+
 const getAllTech = (req, res) => {
     findAllTech()
     .then((data) => {
