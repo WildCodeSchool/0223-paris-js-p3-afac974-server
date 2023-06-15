@@ -1,5 +1,4 @@
 const router = require('express').Router()
-
 const { getAllArt, getOneArt, createArt, putOneArt, deleteArt} = require('./controller')
 
 router.get('/', getAllArt)
