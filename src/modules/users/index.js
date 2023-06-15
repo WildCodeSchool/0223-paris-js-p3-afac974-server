@@ -7,7 +7,7 @@ const  { hashPassword } = require('../../middleware/auth')
 router.get('/', getAll)
 router.get('/:id', getOneUser )
 router.post('/', validateAddUser, hashPassword, createUser)
-router.put('/:id', putOneUser)
+router.put('/:id', validateAddUser, hashPassword, putOneUser)
 router.delete('/:id', deleteUser)
 
 
