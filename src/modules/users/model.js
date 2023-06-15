@@ -34,6 +34,7 @@ const findOneUser = (id) => {
         })
 }
 
+
 const addUser = (user) => {
     const { firstname , lastname, user_name, password, mail, isAdmin, profile_picture } = user
     return db 
@@ -46,6 +47,7 @@ const addUser = (user) => {
             console.error(err); })
 }
 
+
 const removeUser = (id) => {
     return db
         .execute("delete from user Where id = ? ",[id])
@@ -54,7 +56,6 @@ const removeUser = (id) => {
         console.error(err)
             })
 }
-
 
 module.exports = { findAll, findOneUser, addUser,removeUser, modifyOneUser }
 

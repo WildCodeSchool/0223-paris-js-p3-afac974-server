@@ -13,7 +13,7 @@ const database = mysql.createPool({
     database: DB_NAME,
 })
 
-// utile pour savoir si on est bien connecté à la BDD mais ce n'est pas obbligatoire
+// utile pour savoir si on est bien connecté à la BDD mais ce n'est pas obligatoire
 database.getConnection()
   .then(result => {
     console.log('Connected to the MySQL server.');
