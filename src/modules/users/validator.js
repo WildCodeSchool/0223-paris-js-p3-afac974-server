@@ -1,5 +1,5 @@
 const validateAddUser = (req, res, next) => {
-    const { firstname, lastname, email, password } = req.body
+    const { firstname, lastname, mail, password } = req.body
     const errors = []
 
     if (firstname == null || firstname === "") {
@@ -10,18 +10,24 @@ const validateAddUser = (req, res, next) => {
         errors.push({ field : "lastname", message : "This lastname is required"})
     }
 
-    if (email == null || email === "") {
-        errors.push({ field : "email", message : "This email is required"})
+    if (mail == null || mail === "") {
+        errors.push({ field : "mail", message : "This mail is required"})
     }
 
-    const emailRegex = /[a-z0-9._]+@makesense.org/;
+    // const mailRegex = /[a-z0-9._]+@makesense.org/;
+    const mailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
 
-    if (!emailRegex.test(email)) {
-        errors.push({ field : "email", message : "Invalid Email"})
+    if (!mailRegex.test(mail)) {
+        errors.push({ field : "mail", message : "Invalid mail"})
     }
+
+    const passwordRegex = /^[a-zA-Z0-9]{3,30}$/
     
     if (password == null || password === "") {
         errors.push({ field : "password", message : "This password is required"})
+    }
+    if (!passwordRegex.test(password)) {
+        errors.push({ field : "password", message : "Invalid Password"})
     }
 
     if (errors.length) {
