@@ -148,7 +148,7 @@ CREATE TABLE `user` (
   `lastname` varchar(60) NOT NULL,
   `user_name` varchar(30) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `mail` varchar(45) NOT NULL,
+  `mail` varchar(45) NOT NULL UNIQUE,
   `isAdmin` tinyint(4) NOT NULL,
   `profile_picture` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
