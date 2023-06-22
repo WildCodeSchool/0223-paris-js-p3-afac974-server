@@ -5,6 +5,9 @@ const {
   addUser,
   removeUser,
   findByMail,
+  userFavorite,
+  findByFavorite,
+  findAllFavoriteById
 } = require("./model");
 
 const jwt = require("jsonwebtoken");
@@ -47,6 +50,42 @@ const register = async (req, res) => {
   } catch (err) {
     res.status(500).json({ message: "Server error" });
   }
+};
+
+const addUserFavorite = async (req, res) => {
+  const user_id = parseInt(req.params.user_id);
+  const art_id = parseInt(req.params.art_id);
+  const data = { user_id, art_id };
+
+  try {
+    const result = await findByFavorite(data);
+    if (result.length > 0) {
+      res.status(409).send({
+        error: " This art is already in your favorite",
+      });
+    } else {
+      const isFav = await userFavorite(data);
+      console.log("HELLO", isFav);
+      res.status(201).json(isFav);
+    }
+  } catch (err) {
+    res.status(500).json({ message: "Server error" });
+  }
+};
+
+const getAllFavoriteById = (req, res) => {
+ const user_id = req.params.id
+ console.log("PARAMS", req.params.id);
+
+  findAllFavoriteById(user_id)
+    .then((data) => {
+      if (data.length > 0) {
+        res.json(data)
+      } else {
+        res.status(404).json({ message: "No favorite art found with this id !" });
+      }}
+    )
+    .catch((err) => res.status(500).json({ message: "Server error" }));
 };
 
 const getOneUser = (req, res) => {
@@ -131,10 +170,9 @@ const login = async (req, res) => {
   }
 };
 
-
 const logout = (req, res) => {
-   return res.clearCookie("access_token").sendStatus(200);
-}
+  return res.clearCookie("access_token").sendStatus(200);
+};
 
 module.exports = {
   getAll,
@@ -143,5 +181,7 @@ module.exports = {
   register,
   deleteUser,
   login,
-  logout
+  logout,
+  addUserFavorite,
+  getAllFavoriteById
 };
