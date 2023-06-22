@@ -12,6 +12,18 @@ const findAll = () => {
         })
 }
 
+const findByMail = (mail) => {
+    return db
+        .query("select * from user where mail = ?", [mail])
+        .then(([data]) => {
+            return data;
+        })
+        .catch((err) =>{
+            console.error("Error ", err)
+            return err;
+        })
+}
+
 const modifyOneUser = (user, userId) => {
     return db
         .query('update user set ? where id = ?', [user, userId])
@@ -41,10 +53,11 @@ const addUser = (user) => {
         .query("insert into user (firstname , lastname, user_name, password, mail, isAdmin, profile_picture) values (?, ?, ?, ?, ?, ?, ?)",
         [firstname , lastname, user_name, password, mail, isAdmin, profile_picture])
         .then(([data]) => {
+            console.log(data)
             return { id: data.insertId, ...user}
         })
-        .catch((err) => {
-            console.error(err); })
+        // .catch((err) => {
+        //     console.error(err); })
 }
 
 
@@ -57,6 +70,6 @@ const removeUser = (id) => {
             })
 }
 
-module.exports = { findAll, findOneUser, addUser,removeUser, modifyOneUser }
+module.exports = { findAll, findOneUser, addUser,removeUser, modifyOneUser, findByMail}
 
 
