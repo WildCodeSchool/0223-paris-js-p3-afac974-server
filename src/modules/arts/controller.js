@@ -25,9 +25,13 @@ const getAllArt = (req, res) => {
 
   const createArt = (req, res) => {
     const art = req.body;
+    const uploadedFilePath = req.protocol + "://" + req.get("host") + "/upload/" + req.file.filename;
+
   
-    addArt(art)
-      .then((result) => res.status(201).json(result))
+    addArt(art, uploadedFilePath)
+      .then((result) => {
+        res.status(201).json(result)
+      })
       .catch((err) => res.status(500).json({ message: "Server error" }));
   };
 
