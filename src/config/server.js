@@ -4,6 +4,7 @@ const app = express();
 const cookieParser = require("cookie-parser");
 const apiRouter = require("../modules");
 
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 // pour éviter les confilts entre les ports backend et frontend :
