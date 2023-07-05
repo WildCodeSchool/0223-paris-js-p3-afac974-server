@@ -17,7 +17,7 @@ const migrate = async () => {
     await connection.query(`create database ${DB_NAME}`);
     await connection.query(`use ${DB_NAME}`);
 
-    const sql = fs.readFileSync("./afac974.sql", "utf8");
+    const sql = fs.readFileSync("./afac974_db.sql", "utf8");
 
     await connection.query(sql);
 
