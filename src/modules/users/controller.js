@@ -134,7 +134,7 @@ const login = async (req, res) => {
         error: "Invalid email",
       });
     } else {
-      const { id, mail, isAdmin } = userLogin[0];
+      const { id, mail, isAdmin, firstname } = userLogin[0];
       const hash = userLogin[0].password;
 
       const checkPassword = await argon2.verify(hash, password);
@@ -157,6 +157,7 @@ const login = async (req, res) => {
             id,
             mail,
             isAdmin,
+            firstname
           });
       } else {
         res.status(403).send({
