@@ -23,13 +23,13 @@ const findOneArt = (id) => {
 }
 
 
-const addArt = (art) => {
-    const { ref_img , full_title, short_title, achievement_date, dimensions, art_number, description, url_origin, img_url, author_id, category_id, technique_id } = art
+const addArt = (art, img_url) => {
+    const { ref_img , full_title, short_title, achievement_date, dimensions, art_number, description, url_origin, author_id, category_id, technique_id } = art
     return db 
         .query("INSERT INTO art (ref_img , full_title, short_title, achievement_date, dimensions, art_number, description, url_origin, img_url, author_id, category_id, technique_id) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
         [ref_img , full_title, short_title, achievement_date, dimensions, art_number, description, url_origin, img_url, author_id, category_id, technique_id])
         .then(([data]) => {
-            return { id: data.insertId, ...art}
+            return { id: data.insertId, ...art, img_url}
         })
         .catch((err) => {
             console.error(err); })
