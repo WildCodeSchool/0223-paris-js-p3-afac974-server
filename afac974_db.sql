@@ -1,9 +1,8 @@
-
--- MySQL dump 10.13  Distrib 8.0.18, for macos10.14 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.33, for macos13 (arm64)
 --
 -- Host: localhost    Database: project_3
 -- ------------------------------------------------------
--- Server version	8.0.18
+-- Server version	8.0.33
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -24,20 +23,19 @@ DROP TABLE IF EXISTS `art`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `art` (
-
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int NOT NULL AUTO_INCREMENT,
   `ref_img` varchar(45) NOT NULL,
   `full_title` varchar(100) NOT NULL,
   `short_title` varchar(60) DEFAULT NULL,
   `achievement_date` varchar(60) NOT NULL,
   `dimensions` varchar(45) DEFAULT NULL,
-  `art_number` int(11) DEFAULT NULL,
+  `art_number` int DEFAULT NULL,
   `description` longtext,
   `url_origin` varchar(255) DEFAULT NULL,
   `img_url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `author_id` int(11) NOT NULL,
-  `category_id` int(11) NOT NULL,
-  `technique_id` int(11) NOT NULL,
+  `author_id` int NOT NULL,
+  `category_id` int NOT NULL,
+  `technique_id` int NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_art_author1_idx` (`author_id`),
   KEY `fk_art_category1_idx` (`category_id`),
@@ -45,8 +43,7 @@ CREATE TABLE `art` (
   CONSTRAINT `fk_art_author1` FOREIGN KEY (`author_id`) REFERENCES `author` (`id`),
   CONSTRAINT `fk_art_category1` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`),
   CONSTRAINT `fk_art_technique1` FOREIGN KEY (`technique_id`) REFERENCES `technique` (`id`)
-
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -55,7 +52,7 @@ CREATE TABLE `art` (
 
 LOCK TABLES `art` WRITE;
 /*!40000 ALTER TABLE `art` DISABLE KEYS */;
-INSERT INTO `art` VALUES (1,'40FI79','Effet de nuit sur la Cheminée usine du Tampon','Cheminée du Tampon','1866','20 X 14',1,'Attribuée parfois à l\'usine du Grand Tampon, mais c\'est peu probable: l\'usine du Grand Tampon ayant été une scierie. Or, ici, il s\'agit sans doute de l\'usine de Bel Air: on reconnaît les deux corps principaux du bâtiment industriel (purgerie et bâtiment abritant la machine à vapeur) en parallèle, comme sur les figures 2 et 3. La cheminée carrée est sur le côté Nord, construite en basalte, avec intercalation de poutres deux côtés par deux côtés. Devant, un gardien, dont l\'ombre se projette sur la cheminée. En arrière-plan, une allée de palmiers, qui semble mener vers la maison de maître. La disposition des lieux correspond à celle qui existait à Bel Air. Scène d\'apparence paisible ?','','',1,1,1),(2,'40FI78','Arrivée à l\'établissement du Tampon','L\'Établissement','1866','15 X 13.5',2,'Le chemin de l\'Etablissement existe toujours aujourd\'hui, à 400 mètres d\'altitude. Les deux cavaliers sont sans doute Ch. H. N; Mortier de Trévise lui-même, et son beau-frère (Denis-André de K/véguen)? En avant, 3 autres personnages cheminent à pied. La route traverse le lit desseché de la Rivière d\'Abord, et remonte légèrement vers l\'Etablissement (c\'est-à-dire l\'ensemble du fonds avec usine, bâtiments annexes, et camp des travailleurs engagés, non représenté ici. L\'usine elle-même est composée de deux corps parallèles de bâtiments, flanqués chacun d\'une cheminée: l\'une pour évacuer les fumées de combustion pour la batterie Gimart, l\'autre la fumée de la machine à vapeur. En quinconce, un autre bâtiment à l\'avant, abritant les \"tables\" pour le séchage du sucre?',NULL,NULL,1,1,1),(3,'40FI80','Tampon- Une usine','Usine du Tampon','10 février 1866','11.5 X 20.5',3,'Une autre vue de l\'usine de Bel Air, au Tampon: on retrouve le bâtiment en quinconce accolé au corps de l\'usine, avec ses deux cheminées. Au premier plan, sur le chemin de l\'Etablissement (400 m. d\'altitude), on distingue un groupe de travailleurs engagés, près d\'un point d\'eau: un homme, une femme avec un bébé qui porte une jarre sur la tête, et un autre personnage. L\'auteur note le nom des arbres et plantes (aloés divers, vacoas, palmiers)',NULL,NULL,1,1,3),(4,'40FI106','Quartier St Pierre. Etablissement de la Rivière, montagnes de l\'Entre Deux','Établissement de la Rivière','1861 ou 1866','19.5 X 16.5',4,'L\'usine (Etablissement) est installée rive gauche de la Rivière Saint-Etienne, au débouché du lieu-dit l\'Entre-Deux. Elle semble présenter la même physionomie que les autres établissements achetés ou construits par Gabriel de K/Véguen: 2 corps principaux de bâtiments, ici décalés l\'un par rapport à l\'autre, avec des ouvertures en arc de cercle pou évacuer la chaleur, la cheminée qui évacue les fumées de la batterie Gimart, et, à l\'arrière, un ou deux bâtiments pour le séchage du sucre. Au Premier plan, une escouade (une \"bande\") de travailleurs engagés effectue la \"trouaison\", pour la replantation de cannes à sucre, sous la direction d\'un Commandeur, vêtu d\'un pantalon de toile bleue. Un vacoa est ici le témoin indispensable de l\'usage de ses feuilles pour le tressage de sacs, destinés ensuite à transporter le sucre produit.',NULL,NULL,1,1,1),(5,'40FI','Boutchiana- Indien','','juillet 1871',NULL,1,'Boutchiana est devenu le domestique personnel de Ch.Mortier de Trévise, et il a vieilli de 6 ans.',NULL,NULL,1,2,1),(6,'40FI91','Boutchiana- Casernes',NULL,'24 août 1865','19.5 X 11',2,'Travailleur engagé depuis l\'Inde à l\'Etablissement des Casernes, il tient une lance, peut-être a-t-il une fonction de gardien? Sur sa fiche d\'engagement, il était recensé comme tailleur',NULL,NULL,1,2,1),(7,'40FI90','Boutchiana-Casernes, de face',NULL,'1865','19.5 X 8.5',3,'Complète la précédente aquarelle. On devine la jeunesse de Boutchiana, engagé à l\'adolescence. Arrivé à bord de Yanaon, en Inde, à bord du navire de la famille Kerveguen, Le Canova, on le dit âgé de 17 ans',NULL,NULL,1,2,1),(8,'40FI76','Cafrine et son petit au Tampon',NULL,'1861','18 X 13',4,'C\'est une engagée, ou alors une affranchie. Elle porte la robe de toile bleue, dont la fourniture est obligatoire par l\'employeur, selon les termes du contrat d\'engagement. La pratique ne change guère de ce qui était déjà prévu avant 1848 pour les esclaves, par le \"Code noir\" de 1723. ',NULL,NULL,1,2,1);
+INSERT INTO `art` VALUES (1,'40FI79','Effet de nuit sur la Cheminée usine du Tampon','Cheminée du Tampon','1866','20 X 14',1,'Attribuée parfois à l\'usine du Grand Tampon, mais c\'est peu probable: l\'usine du Grand Tampon ayant été une scierie. Or, ici, il s\'agit sans doute de l\'usine de Bel Air: on reconnaît les deux corps principaux du bâtiment industriel (purgerie et bâtiment abritant la machine à vapeur) en parallèle, comme sur les figures 2 et 3. La cheminée carrée est sur le côté Nord, construite en basalte, avec intercalation de poutres deux côtés par deux côtés. Devant, un gardien, dont l\'ombre se projette sur la cheminée. En arrière-plan, une allée de palmiers, qui semble mener vers la maison de maître. La disposition des lieux correspond à celle qui existait à Bel Air. Scène d\'apparence paisible ?','','http://localhost:8000/upload/ChemineeDuTampon.jpg',1,1,1),(2,'40FI78','Arrivée à l\'établissement du Tampon','L\'Établissement','1866','15 X 13.5',2,'Le chemin de l\'Etablissement existe toujours aujourd\'hui, à 400 mètres d\'altitude. Les deux cavaliers sont sans doute Ch. H. N; Mortier de Trévise lui-même, et son beau-frère (Denis-André de K/véguen)? En avant, 3 autres personnages cheminent à pied. La route traverse le lit desseché de la Rivière d\'Abord, et remonte légèrement vers l\'Etablissement (c\'est-à-dire l\'ensemble du fonds avec usine, bâtiments annexes, et camp des travailleurs engagés, non représenté ici. L\'usine elle-même est composée de deux corps parallèles de bâtiments, flanqués chacun d\'une cheminée: l\'une pour évacuer les fumées de combustion pour la batterie Gimart, l\'autre la fumée de la machine à vapeur. En quinconce, un autre bâtiment à l\'avant, abritant les \"tables\" pour le séchage du sucre?',NULL,'http://localhost:8000/upload/LEtablissement.jpg',1,1,1),(3,'40FI80','Tampon- Une usine','Usine du Tampon','10 février 1866','11.5 X 20.5',3,'Une autre vue de l\'usine de Bel Air, au Tampon: on retrouve le bâtiment en quinconce accolé au corps de l\'usine, avec ses deux cheminées. Au premier plan, sur le chemin de l\'Etablissement (400 m. d\'altitude), on distingue un groupe de travailleurs engagés, près d\'un point d\'eau: un homme, une femme avec un bébé qui porte une jarre sur la tête, et un autre personnage. L\'auteur note le nom des arbres et plantes (aloés divers, vacoas, palmiers)',NULL,'http://localhost:8000/upload/UsineDuTampon.jpg',1,1,3),(4,'40FI106','Quartier St Pierre. Etablissement de la Rivière, montagnes de l\'Entre Deux','Établissement de la Rivière','1861 ou 1866','19.5 X 16.5',4,'L\'usine (Etablissement) est installée rive gauche de la Rivière Saint-Etienne, au débouché du lieu-dit l\'Entre-Deux. Elle semble présenter la même physionomie que les autres établissements achetés ou construits par Gabriel de K/Véguen: 2 corps principaux de bâtiments, ici décalés l\'un par rapport à l\'autre, avec des ouvertures en arc de cercle pou évacuer la chaleur, la cheminée qui évacue les fumées de la batterie Gimart, et, à l\'arrière, un ou deux bâtiments pour le séchage du sucre. Au Premier plan, une escouade (une \"bande\") de travailleurs engagés effectue la \"trouaison\", pour la replantation de cannes à sucre, sous la direction d\'un Commandeur, vêtu d\'un pantalon de toile bleue. Un vacoa est ici le témoin indispensable de l\'usage de ses feuilles pour le tressage de sacs, destinés ensuite à transporter le sucre produit.',NULL,'http://localhost:8000/upload/EtablissementDeLaRiviere.jpg',1,1,1),(5,'40FI','Boutchiana - Indien','','juillet 1871',NULL,1,'Boutchiana est devenu le domestique personnel de Ch.Mortier de Trévise, et il a vieilli de 6 ans.',NULL,'http://localhost:8000/upload/BoutchianaIndien.jpg',1,2,1),(6,'40FI91','Boutchiana - Casernes',NULL,'24 août 1865','19.5 X 11',2,'Travailleur engagé depuis l\'Inde à l\'Etablissement des Casernes, il tient une lance, peut-être a-t-il une fonction de gardien? Sur sa fiche d\'engagement, il était recensé comme tailleur',NULL,'http://localhost:8000/upload/BoutchianaCaserne.jpg',1,2,1),(7,'40FI90','Boutchiana - Casernes, de face',NULL,'1865','19.5 X 8.5',3,'Complète la précédente aquarelle. On devine la jeunesse de Boutchiana, engagé à l\'adolescence. Arrivé à bord de Yanaon, en Inde, à bord du navire de la famille Kerveguen, Le Canova, on le dit âgé de 17 ans',NULL,'http://localhost:8000/upload/BoutchianaCaserneDeFace.jpg',1,2,1),(8,'40FI76','Cafrine et son petit au Tampon',NULL,'1861','18 X 13',4,'C\'est une engagée, ou alors une affranchie. Elle porte la robe de toile bleue, dont la fourniture est obligatoire par l\'employeur, selon les termes du contrat d\'engagement. La pratique ne change guère de ce qui était déjà prévu avant 1848 pour les esclaves, par le \"Code noir\" de 1723. ',NULL,'http://localhost:8000/upload/CafrineEtSonPetit.jpg',1,2,1),(9,'40FI52','La vieille (Victorine) Mme Samsi Casernes',NULL,'15 décembre 1865','18 X 12',5,'La vieille dame est assise sur une natte, vêtue de la traditionnelle robe de toile bleue fournie par l\'employeur. Son foulard noué sur la tête est taillé dans la même toile. ',NULL,'http://localhost:8000/upload/LaVieilleVictorine.jpg',1,2,1),(10,'40FI74','La belle Tina',NULL,'1866',NULL,8,'Visiblement, Mortier de Trévise a été impressionné par la chevelure de Tina. Encore une petite fille de Victorine, plus jeune. il semble que les fillettes fassent leur apprentissage de domestiques dans la propriété des Kerveguen.',NULL,'http://localhost:8000/upload/LaBelleTina.jpg',1,2,2);
 /*!40000 ALTER TABLE `art` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -67,7 +64,7 @@ DROP TABLE IF EXISTS `author`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `author` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int NOT NULL AUTO_INCREMENT,
   `firstname` varchar(45) DEFAULT NULL,
   `lastname` varchar(45) DEFAULT NULL,
   `birthdate` date DEFAULT NULL,
@@ -95,7 +92,7 @@ DROP TABLE IF EXISTS `category`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `category` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(45) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -119,10 +116,10 @@ DROP TABLE IF EXISTS `technique`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `technique` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(45) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -143,16 +140,17 @@ DROP TABLE IF EXISTS `user`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `user` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int NOT NULL AUTO_INCREMENT,
   `firstname` varchar(60) NOT NULL,
   `lastname` varchar(60) NOT NULL,
   `user_name` varchar(30) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `mail` varchar(45) NOT NULL UNIQUE,
-  `isAdmin` tinyint(4) NOT NULL,
+  `mail` varchar(45) NOT NULL,
+  `isAdmin` tinyint NOT NULL,
   `profile_picture` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `mail_UNIQUE` (`mail`)
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -161,7 +159,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'John','Doe','Jojo','root','j.d@gallery.com',1,'');
+INSERT INTO `user` VALUES (1,'John','Doe','Jojo','root','j.d@gallery.com',1,''),(2,'Omar','Heyy','omar','omar','j.d@omar.com',1,'bg.jpg'),(6,'Omdazpodjapzodci','A NEW ONE','zddza','rodopzajzdaùmkdlùakddipjazot','j.d@apefkefkoeajoejgoeofeojeogjgallery.com',1,''),(7,'ok','A NEW ONE','zddza','$argon2id$v=19$m=65536,t=3,p=4$NEmIeGCCWVzMDqOKCVmuFw$dSyu5d3Wb/Xm4YB5YsY2KXq/XzrHdZnGdxp/oruEakc','abc@abc.com',1,''),(17,'ok','A NEW ONE','zddza','$argon2id$v=19$m=65536,t=3,p=4$IkUNg6KQufPha2/YaiZxEw$4MgTQ82rfxrBSfO4dWO/fnDN3baq57K5OXuiwY2oQ2o','hello@gmail.com',0,''),(18,'LOL','A NEW ONE A NEW ONE','HELLO','$argon2id$v=19$m=65536,t=3,p=4$uYRhu+sZ56rsmT76ONIz1g$yTHCnUhySlZtFchASbbj4pjX4lurEm8lyTIqIsxp9Q4','hello@dzadnazfk.com',0,''),(19,'Naomi','Rose','nrose','$argon2id$v=19$m=65536,t=3,p=4$qqiYvssUoTBqQusc+iRxBA$7WUaDI4wg0MIcqesuJ4MniMojSg8wt6NH4ZTz3hME6k','nrose@mail.com',1,NULL);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -173,8 +171,8 @@ DROP TABLE IF EXISTS `user_art_favorite`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `user_art_favorite` (
-  `user_id` int(11) NOT NULL,
-  `art_id` int(11) NOT NULL,
+  `user_id` int NOT NULL,
+  `art_id` int NOT NULL,
   PRIMARY KEY (`user_id`,`art_id`),
   KEY `fk_user_has_art_art1_idx` (`art_id`),
   KEY `fk_user_has_art_user1_idx` (`user_id`),
@@ -189,11 +187,11 @@ CREATE TABLE `user_art_favorite` (
 
 LOCK TABLES `user_art_favorite` WRITE;
 /*!40000 ALTER TABLE `user_art_favorite` DISABLE KEYS */;
+INSERT INTO `user_art_favorite` VALUES (1,1),(1,2),(6,4),(6,5),(6,6);
 /*!40000 ALTER TABLE `user_art_favorite` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
-
 -- Dumping routines for database 'project_3'
 --
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -206,5 +204,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-06-08  0:30:45
-
+-- Dump completed on 2023-07-06 10:02:20
