@@ -1,11 +1,17 @@
-const router = require('express').Router()
-const { getAllArt, getOneArt, createArt, putOneArt, deleteArt} = require('./controller')
-const upload = require('../../middleware/fileUpload')
+const router = require('express').Router();
+const {
+  getAllArt,
+  getOneArt,
+  createArt,
+  putOneArt,
+  deleteArt,
+} = require('./controller');
+const upload = require('../../middleware/fileUpload');
 
-router.get('/', getAllArt)
-router.get('/:id', getOneArt)
-router.post('/', upload.single("arts"), createArt)
-router.put('/:id', putOneArt)
-router.delete('/:id', deleteArt)
+router.get('/', getAllArt);
+router.get('/:id', getOneArt);
+router.post('/', upload.any(), createArt);
+router.put('/:id', putOneArt);
+router.delete('/:id', deleteArt);
 
-module.exports = router
+module.exports = router;
