@@ -30,7 +30,6 @@ const authorization = (req, res, next) => {
 };
 
 const isAdmin = (req, res, next) => {
-  console.log("hello", req.isAdmin);
   if (req.isAdmin) {
     
     return next();
