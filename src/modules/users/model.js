@@ -24,6 +24,11 @@ const findByMail = (mail) => {
         })
 }
 
+const getById = async (id) => {
+    const [user] = await db.query("SELECT id, firstname, lastname , mail, isAdmin FROM user WHERE id = ?", [id]);
+    return user;
+}
+
 const modifyOneUser = (user, userId) => {
     return db
         .query('update user set ? where id = ?', [user, userId])
@@ -96,6 +101,6 @@ const findAllFavoriteById = (user_id) => {
         })
 }
  
-module.exports = { findAll, findOneUser, addUser,removeUser, modifyOneUser, findByMail, userFavorite, findByFavorite, findAllFavoriteById }
+module.exports = { findAll, findOneUser, addUser,removeUser, modifyOneUser, findByMail, userFavorite, findByFavorite, findAllFavoriteById, getById }
 
 
