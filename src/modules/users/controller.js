@@ -7,7 +7,8 @@ const {
   findByMail,
   userFavorite,
   findByFavorite,
-  findAllFavoriteById
+  findAllFavoriteById,
+  getById
 } = require("./model");
 
 const jwt = require("jsonwebtoken");
@@ -19,6 +20,16 @@ const getAll = (req, res) => {
     .then((data) => res.json(data))
     .catch((err) => res.status(500).json({ message: "Server error" }));
 };
+
+const getCurrentUser = async (req, res, next) => {
+  // console.log("req", req.body)
+  try {
+    const [user] = await getById(req.userId);
+      res.status(200).json(user);
+  } catch (err) {
+      next(err);
+  }
+}
 
 const putOneUser = (req, res) => {
   const user = req.body;
@@ -134,7 +145,7 @@ const login = async (req, res) => {
         error: "Invalid email",
       });
     } else {
-      const { id, mail, isAdmin, firstname } = userLogin[0];
+      const { id, mail, isAdmin, firstname, lastname } = userLogin[0];
       const hash = userLogin[0].password;
 
       const checkPassword = await argon2.verify(hash, password);
@@ -157,7 +168,8 @@ const login = async (req, res) => {
             id,
             mail,
             isAdmin,
-            firstname
+            firstname,
+            lastname
           });
       } else {
         res.status(403).send({
@@ -184,5 +196,6 @@ module.exports = {
   login,
   logout,
   addUserFavorite,
-  getAllFavoriteById
+  getAllFavoriteById,
+  getCurrentUser,
 };
