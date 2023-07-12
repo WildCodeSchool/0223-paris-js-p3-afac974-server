@@ -1,8 +1,18 @@
 const db = require('../../config/database')
 
-const findAllArt = () => {
+const findAllArt = (queryParams) => {
+    let queryFilters = "";
+    let arrayFilters = [];
+    let params = [];
+    for (let key in queryParams) {
+        arrayFilters.push(`${key} = ?`);
+        params.push(queryParams[key])
+    }
+    queryFilters = arrayFilters.join(" AND ");
+    if (queryFilters.length > 0) queryFilters = " WHERE " + queryFilters;
+
     return db
-        .query('select * from art')
+        .query(`select * FROM art as a JOIN category as c on a.category_id = c.id JOIN technique as t on a.technique_id  = t.id JOIN author on author.id = a.author_id${queryFilters}`, params)
         .then(([data]) => {
             return data
         })

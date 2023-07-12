@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.33, for macos13 (arm64)
+-- MySQL dump 10.13  Distrib 8.0.18, for macos10.14 (x86_64)
 --
 -- Host: localhost    Database: project_3
 -- ------------------------------------------------------
--- Server version	8.0.33
+-- Server version	8.0.18
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -23,19 +23,19 @@ DROP TABLE IF EXISTS `art`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `art` (
-  `id` int NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `ref_img` varchar(45) NOT NULL,
   `full_title` varchar(100) NOT NULL,
   `short_title` varchar(60) DEFAULT NULL,
   `achievement_date` varchar(60) NOT NULL,
   `dimensions` varchar(45) DEFAULT NULL,
-  `art_number` int DEFAULT NULL,
+  `art_number` int(11) DEFAULT NULL,
   `description` longtext,
   `url_origin` varchar(255) DEFAULT NULL,
   `img_url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `author_id` int NOT NULL,
-  `category_id` int NOT NULL,
-  `technique_id` int NOT NULL,
+  `author_id` int(11) NOT NULL,
+  `category_id` int(11) NOT NULL,
+  `technique_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_art_author1_idx` (`author_id`),
   KEY `fk_art_category1_idx` (`category_id`),
@@ -64,7 +64,7 @@ DROP TABLE IF EXISTS `author`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `author` (
-  `id` int NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `firstname` varchar(45) DEFAULT NULL,
   `lastname` varchar(45) DEFAULT NULL,
   `birthdate` date DEFAULT NULL,
@@ -92,8 +92,8 @@ DROP TABLE IF EXISTS `category`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `category` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(45) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `category_name` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -116,8 +116,8 @@ DROP TABLE IF EXISTS `technique`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `technique` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(45) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `technique_name` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -140,13 +140,13 @@ DROP TABLE IF EXISTS `user`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `user` (
-  `id` int NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `firstname` varchar(60) NOT NULL,
   `lastname` varchar(60) NOT NULL,
   `user_name` varchar(30) NOT NULL,
   `password` varchar(255) NOT NULL,
   `mail` varchar(45) NOT NULL,
-  `isAdmin` tinyint NOT NULL,
+  `isAdmin` tinyint(4) NOT NULL,
   `profile_picture` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `mail_UNIQUE` (`mail`)
@@ -171,8 +171,8 @@ DROP TABLE IF EXISTS `user_art_favorite`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `user_art_favorite` (
-  `user_id` int NOT NULL,
-  `art_id` int NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `art_id` int(11) NOT NULL,
   PRIMARY KEY (`user_id`,`art_id`),
   KEY `fk_user_has_art_art1_idx` (`art_id`),
   KEY `fk_user_has_art_user1_idx` (`user_id`),
@@ -204,4 +204,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-07-09  7:31:27
+-- Dump completed on 2023-07-12 12:21:43
