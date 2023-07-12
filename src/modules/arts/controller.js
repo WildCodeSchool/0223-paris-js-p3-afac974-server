@@ -7,10 +7,10 @@ const {
 } = require('./model');
 
 const getAllArt = (req, res) => {
-    findAllArt(req.query)
-      .then((data) => res.json(data))
-      .catch((err) => res.status(500).json({ message: "Server error" }));
-  };
+  findAllArt(req.query)
+    .then((data) => res.json(data))
+    .catch((err) => res.status(500).json({ message: 'Server error' }));
+};
 
 const getOneArt = (req, res) => {
   const id = parseInt(req.params.id);
@@ -31,9 +31,7 @@ const getOneArt = (req, res) => {
 const createArt = (req, res) => {
   const art = req.body;
   const uploadedFilePath =
-    req.protocol + '://' + req.get('host') + '/upload/' + req.files[0].filename;
-  console.log('req file', req.file);
-  console.log(art, uploadedFilePath);
+  req.protocol + '://' + req.get('host') + '/upload/' + req.files[0].filename;
 
   addArt(art, uploadedFilePath)
     .then((result) => {
