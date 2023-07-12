@@ -12,7 +12,7 @@ const findAllArt = (queryParams) => {
     if (queryFilters.length > 0) queryFilters = " WHERE " + queryFilters;
 
     return db
-        .query(`select * from art${queryFilters}`, params)
+        .query(`select c.name as category, t.name as technique, category_id, technique_id, ref_img, full_title, short_title, achievement_date, dimensions, art_number, description, url_origin, img_url, author_id, firstname, lastname, birthdate, deathdate, biography FROM art as a JOIN category as c on a.category_id = c.id JOIN technique as t on a.technique_id  = t.id JOIN author on author.id = a.author_id${queryFilters}`, params)
         .then(([data]) => {
             return data
         })
