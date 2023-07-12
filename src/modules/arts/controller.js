@@ -1,7 +1,7 @@
 const { findAllArt, findOneArt, addArt, modifyOneArt, removeArt} = require("./model")
 
 const getAllArt = (req, res) => {
-    findAllArt()
+    findAllArt(req.query)
       .then((data) => res.json(data))
       .catch((err) => res.status(500).json({ message: "Server error" }));
   };
