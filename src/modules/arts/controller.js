@@ -7,10 +7,10 @@ const {
 } = require('./model');
 
 const getAllArt = (req, res) => {
-  findAllArt()
-    .then((data) => res.json(data))
-    .catch((err) => res.status(500).json({ message: 'Server error' }));
-};
+    findAllArt(req.query)
+      .then((data) => res.json(data))
+      .catch((err) => res.status(500).json({ message: "Server error" }));
+  };
 
 const getOneArt = (req, res) => {
   const id = parseInt(req.params.id);
