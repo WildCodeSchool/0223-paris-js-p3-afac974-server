@@ -1,6 +1,13 @@
+const { query } = require('../../config/database');
 const db = require('../../config/database')
 
 const findAllArt = (queryParams) => {
+    console.log(queryParams)
+    let keyOrder = queryParams.order   // extraction du filtre ORDER
+    console.log("keyOrder:", keyOrder)
+    delete queryParams.order;   // suppression de la clé "order"
+    let queryOrder = 'ORDER by id ' + keyOrder; 
+    console.log("queryOrder", queryOrder)
     let queryFilters = "";
     let arrayFilters = [];
     let params = [];
@@ -8,11 +15,14 @@ const findAllArt = (queryParams) => {
         arrayFilters.push(`${key} = ?`);
         params.push(queryParams[key])
     }
+    params.push(keyOrder)
     queryFilters = arrayFilters.join(" AND ");
     if (queryFilters.length > 0) queryFilters = " WHERE " + queryFilters;
+    console.log("db text:", queryFilters)
 
     return db
-        .query(`select * FROM art as a JOIN category as c on a.category_id = c.id JOIN technique as t on a.technique_id  = t.id JOIN author on author.id = a.author_id${queryFilters}`, params)
+        .query(`select * FROM art as a JOIN category as c on a.category_id = c.id JOIN technique as t on a.technique_id  
+        = t.id JOIN author on author.id = a.author_id${queryFilters} ${queryOrder}`, params)
         .then(([data]) => {
             return data
         })
