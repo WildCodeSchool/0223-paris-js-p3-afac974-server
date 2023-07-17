@@ -40,10 +40,10 @@ CREATE TABLE `art` (
   KEY `fk_art_author1_idx` (`author_id`),
   KEY `fk_art_category1_idx` (`category_id`),
   KEY `fk_art_technique1_idx` (`technique_id`),
-  CONSTRAINT `fk_art_author1` FOREIGN KEY (`author_id`) REFERENCES `author` (`id`),
-  CONSTRAINT `fk_art_category1` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`),
-  CONSTRAINT `fk_art_technique1` FOREIGN KEY (`technique_id`) REFERENCES `technique` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  CONSTRAINT `fk_art_author1` FOREIGN KEY (`author_id`) REFERENCES `author` (`aut_id`),
+  CONSTRAINT `fk_art_category1` FOREIGN KEY (`category_id`) REFERENCES `category` (`c_id`),
+  CONSTRAINT `fk_art_technique1` FOREIGN KEY (`technique_id`) REFERENCES `technique` (`t_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -64,13 +64,13 @@ DROP TABLE IF EXISTS `author`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `author` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `aut_id` int(11) NOT NULL AUTO_INCREMENT,
   `firstname` varchar(45) DEFAULT NULL,
   `lastname` varchar(45) DEFAULT NULL,
   `birthdate` date DEFAULT NULL,
   `deathdate` date DEFAULT NULL,
   `biography` varchar(500) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`aut_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -92,9 +92,9 @@ DROP TABLE IF EXISTS `category`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `category` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `c_id` int(11) NOT NULL AUTO_INCREMENT,
   `category_name` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`c_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -116,9 +116,9 @@ DROP TABLE IF EXISTS `technique`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `technique` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `t_id` int(11) NOT NULL AUTO_INCREMENT,
   `technique_name` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`t_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -204,4 +204,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-07-12 12:21:43
+-- Dump completed on 2023-07-16 16:59:11
