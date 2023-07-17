@@ -43,8 +43,10 @@ const createArt = (req, res) => {
 const putOneArt = (req, res) => {
   const art = req.body;
   const id = req.params.id;
+  const uploadedFilePath =
+  req.protocol + '://' + req.get('host') + '/upload/' + req.files[0].filename;
 
-  modifyOneArt(art, id).then((result) => {
+  modifyOneArt(art, uploadedFilePath, id).then((result) => {
     if (result.affectedRows === 1) {
       res.json({ id, ...art });
     } else {

@@ -22,7 +22,6 @@ const getAll = (req, res) => {
 };
 
 const getCurrentUser = async (req, res, next) => {
-  // console.log("req", req.body)
   try {
     const [user] = await getById(req.userId);
       res.status(200).json(user);
@@ -49,7 +48,6 @@ const register = async (req, res) => {
 
   try {
     const result = await findByMail(user.mail);
-    console.log("Hello", result);
     if (result.length > 0) {
       res.status(409).send({
         error: " email already exist",
@@ -76,7 +74,6 @@ const addUserFavorite = async (req, res) => {
       });
     } else {
       const isFav = await userFavorite(data);
-      console.log("HELLO", isFav);
       res.status(201).json(isFav);
     }
   } catch (err) {
@@ -86,7 +83,6 @@ const addUserFavorite = async (req, res) => {
 
 const getAllFavoriteById = (req, res) => {
  const user_id = req.params.id
- console.log("PARAMS", req.params.id);
 
   findAllFavoriteById(user_id)
     .then((data) => {
