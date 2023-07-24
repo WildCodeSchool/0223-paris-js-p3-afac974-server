@@ -18,6 +18,7 @@ const findAllArt = (queryParams) => {
     if (queryFilters.length > 0) queryFilters = " WHERE " + queryFilters;
   
     return db
+
       .query(
         `SELECT * FROM art AS a 
          JOIN category AS c on a.category_id = c.c_id 
@@ -33,7 +34,6 @@ const findAllArt = (queryParams) => {
         console.error('err', err);
       });
   };
-  
 
 const findOneArt = (id) => {
     return db
