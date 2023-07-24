@@ -58,16 +58,16 @@ const modifyOneArt = (art, img_url, artId)=>{
     });
 };
 
-const modifyOneArt = (art, artId) => {
-  return db
-    .query("update art set ? where id = ?", [art, artId])
-    .then(([result]) => {
-      return result;
-    })
-    .catch((err) => {
-      console.error("err", err);
-    });
-};
+// const modifyOneArt = (art, artId) => {
+//   return db
+//     .query("update art set ? where id = ?", [art, artId])
+//     .then(([result]) => {
+//       return result;
+//     })
+//     .catch((err) => {
+//       console.error("err", err);
+//     });
+// };
 
 const removeArt = (id) => {
   return db

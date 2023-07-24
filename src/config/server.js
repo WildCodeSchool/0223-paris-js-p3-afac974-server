@@ -8,7 +8,7 @@ const path = require("path");
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 // pour éviter les confilts entre les ports backend et frontend :
-const corsOption = { origin: "http://localhost:5174", credentials: true };
+const corsOption = { origin: "http://localhost:5175", credentials: true };
 app.use(express.static(path.join(__dirname + "/../../public")));
 app.use(cors(corsOption));
 app.options("*", cors(corsOption));
