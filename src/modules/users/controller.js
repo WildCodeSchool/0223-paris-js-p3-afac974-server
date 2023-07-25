@@ -8,11 +8,10 @@ const {
   userFavorite,
   findByFavorite,
   findAllFavoriteById,
-  getById
+  getById,
 } = require("./model");
 
 const jwt = require("jsonwebtoken");
-
 const argon2 = require("argon2");
 
 const getAll = (req, res) => {
@@ -22,26 +21,36 @@ const getAll = (req, res) => {
 };
 
 const getCurrentUser = async (req, res, next) => {
-  // console.log("req", req.body)
   try {
     const [user] = await getById(req.userId);
-      res.status(200).json(user);
+    res.status(200).json(user);
   } catch (err) {
-      next(err);
+    next(err);
   }
-}
+};
 
-const putOneUser = (req, res) => {
+const putOneUser = async (req, res) => {
   const user = req.body;
   const id = req.params.id;
 
-  modifyOneUser(user, id).then((result) => {
-    if (result.affectedRows === 1) {
-      res.json({ id, ...user });
-    } else {
-      res.status(404).json({ message: "No student found with this id !" });
-    }
-  });
+  if (req.body.newPassword) {
+    const hashedPassword = await argon2.hash(req.body.newPassword);
+    user.password = hashedPassword;
+    delete user.newPassword;
+  }
+
+  modifyOneUser(user, id)
+    .then((result) => {
+      if (result.affectedRows === 1) {
+        res.json({ id, ...user });
+      } else {
+        res.status(404).json({ message: "No users found with this id !" });
+      }
+    })
+    .catch((err) => {
+      console.log("err", err);
+      res.status(500).json({ message: "Internal server error" });
+    });
 };
 
 const register = async (req, res) => {
@@ -85,17 +94,19 @@ const addUserFavorite = async (req, res) => {
 };
 
 const getAllFavoriteById = (req, res) => {
- const user_id = req.params.id
- console.log("PARAMS", req.params.id);
+  const user_id = req.params.id;
+  console.log("PARAMS", req.params.id);
 
   findAllFavoriteById(user_id)
     .then((data) => {
       if (data.length > 0) {
-        res.json(data)
+        res.json(data);
       } else {
-        res.status(404).json({ message: "No favorite art found with this id !" });
-      }}
-    )
+        res
+          .status(404)
+          .json({ message: "No favorite art found with this id !" });
+      }
+    })
     .catch((err) => res.status(500).json({ message: "Server error" }));
 };
 
@@ -169,7 +180,7 @@ const login = async (req, res) => {
             mail,
             isAdmin,
             firstname,
-            lastname
+            lastname,
           });
       } else {
         res.status(403).send({
