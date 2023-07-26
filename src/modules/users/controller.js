@@ -37,6 +37,9 @@ const putOneUser = async (req, res) => {
     const hashedPassword = await argon2.hash(req.body.newPassword);
     user.password = hashedPassword;
     delete user.newPassword;
+  } else {
+    // If newPassword is not provided, remove the password property from the user object
+    delete user.password;
   }
 
   modifyOneUser(user, id)
@@ -95,7 +98,6 @@ const addUserFavorite = async (req, res) => {
 
 const getAllFavoriteById = (req, res) => {
   const user_id = req.params.id;
-  console.log("PARAMS", req.params.id);
 
   findAllFavoriteById(user_id)
     .then((data) => {

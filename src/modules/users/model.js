@@ -79,8 +79,6 @@ const addUser = (user) => {
     .then(([data]) => {
       return { id: data.insertId, ...user };
     });
-  // .catch((err) => {
-  //     console.error(err); })
 };
 
 const removeUser = (id) => {
@@ -100,7 +98,7 @@ const userFavorite = (favorite) => {
       art_id,
     ])
     .then(([data]) => {
-      return { ...favorite };
+      return { data };
     });
 };
 
