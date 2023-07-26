@@ -8,7 +8,9 @@ const {
   userFavorite,
   findByFavorite,
   findAllFavoriteById,
-  getById
+  getById,
+  removeUserFavorite
+
 } = require("./model");
 
 const jwt = require("jsonwebtoken");
@@ -183,6 +185,21 @@ const logout = (req, res) => {
   return res.clearCookie("access_token").sendStatus(200);
 };
 
+const deleteUserFavorite= (req, res) =>{
+  const user_id = parseInt(req.params.user_id);
+  const art_id = parseInt(req.params.art_id);
+  const data = { user_id, art_id };
+  removeUserFavorite(user_id , art_id)
+  .then((result) => {
+    if (result.affectedRows === 1) {
+      res.sendStatus(204);
+    } else {
+      res.status(404).json({ message: "No favorite found found with this id !" });
+    }
+  })
+  .catch((err) => res.status(500).json({ message: "Server error" }));
+}
+
 module.exports = {
   getAll,
   getOneUser,
@@ -194,4 +211,5 @@ module.exports = {
   addUserFavorite,
   getAllFavoriteById,
   getCurrentUser,
+  deleteUserFavorite
 };

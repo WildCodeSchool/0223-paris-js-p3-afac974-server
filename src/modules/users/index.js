@@ -1,6 +1,6 @@
 const router = require('express').Router();
 
-const { getAll, getOneUser, putOneUser, register,deleteUser, login, logout, addUserFavorite, getAllFavoriteById, getCurrentUser } = require("./controller")
+const { getAll, getOneUser, putOneUser, register,deleteUser, login, logout, addUserFavorite, getAllFavoriteById, getCurrentUser, deleteUserFavorite} = require("./controller")
 
 const { validateAddUser } = require("./validator")
 const  { hashPassword, isAdmin, authorization } = require('../../middleware/auth')
@@ -15,5 +15,6 @@ router.post("/login", login)
 router.post("/favorite/:user_id/:art_id", addUserFavorite)
 router.put('/:id', authorization, validateAddUser, hashPassword, putOneUser)
 router.delete('/:id', authorization, isAdmin, deleteUser)
+router.delete('/favorite/:user_id/:art_id', deleteUserFavorite)
 
 module.exports = router;
