@@ -100,7 +100,15 @@ const findAllFavoriteById = (user_id) => {
             return data
         })
 }
+const removeUserFavorite = (user_id, art_id)=>{
+    return db
+    .query('DELETE from user_art_favorite as uaf WHERE user_id = ?  and art_id = ?', [user_id , art_id])
+    .then(([data]) => data )
+    .catch((err) => {
+    console.error(err)
+        })
+}
  
-module.exports = { findAll, findOneUser, addUser,removeUser, modifyOneUser, findByMail, userFavorite, findByFavorite, findAllFavoriteById, getById }
+module.exports = { findAll, findOneUser, addUser,removeUser, modifyOneUser, findByMail, userFavorite, findByFavorite, findAllFavoriteById, getById, removeUserFavorite }
 
 

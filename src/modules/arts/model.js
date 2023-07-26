@@ -67,22 +67,31 @@ const modifyOneArt = (art, img_url, artId)=>{
     .then(([result])=>{
         return result
     })
-    .catch((err)=>{
-        console.error('err', err)
-    })
-}
+    .catch((err) => {
+      console.error(err);
+    });
+};
 
+// const modifyOneArt = (art, artId) => {
+//   return db
+//     .query("update art set ? where id = ?", [art, artId])
+//     .then(([result]) => {
+//       return result;
+//     })
+//     .catch((err) => {
+//       console.error("err", err);
+//     });
+// };
 
 const removeArt = (id) => {
-    return db
-        .query("delete from art where id = ?", [id])
-        .then(([data]) => {
-            return data;
-        })
-        .catch((err) =>{
-            console.error("Error ", err)
-        })
-} 
+  return db
+    .query("delete from art where id = ?", [id])
+    .then(([data]) => {
+      return data;
+    })
+    .catch((err) => {
+      console.error("Error ", err);
+    });
+};
 
-
-module.exports = { findAllArt, findOneArt, addArt, modifyOneArt, removeArt};
+module.exports = { findAllArt, findOneArt, addArt, modifyOneArt, removeArt };

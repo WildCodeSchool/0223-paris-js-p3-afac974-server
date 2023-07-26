@@ -68,4 +68,5 @@ const deleteArt = (req, res) => {
     .catch((err) => res.status(500).json({ message: 'Server error' }));
 };
 
+
 module.exports = { getAllArt, getOneArt, createArt, putOneArt, deleteArt };
