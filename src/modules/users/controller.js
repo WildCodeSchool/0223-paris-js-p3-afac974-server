@@ -64,7 +64,7 @@ const register = async (req, res) => {
 };
 
 const addUserFavorite = async (req, res) => {
-  const user_id = parseInt(req.userId);
+  const user_id = parseInt(req.params.user_id);
   const art_id = parseInt(req.params.art_id);
   const data = { user_id, art_id };
 
