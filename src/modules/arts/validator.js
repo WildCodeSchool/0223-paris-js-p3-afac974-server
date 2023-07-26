@@ -13,10 +13,6 @@ const validateAddArt = (req, res, next) => {
     }
 
 
-    if (img_url == null || img_url === "") {
-        errors.push({ field : "img_url", message : "This image url is required"})
-    } 
-
     if (author_id == null || author_id === "") {
         errors.push({ field : "author_id", message : "The id of author is required"})
     }
