@@ -6,12 +6,14 @@ const {
   putOneArt,
   deleteArt,
 } = require('./controller');
+
+const { validateAddArt} = require('./validator')
 const upload = require('../../middleware/fileUpload');
 
 router.get('/', getAllArt);
 router.get('/:id', getOneArt);
-router.post('/', upload.any(), createArt);
-router.put('/:id', putOneArt);
+router.post('/', upload.any(),validateAddArt, createArt);
+router.put('/:id', upload.any(), putOneArt);
 router.delete('/:id', deleteArt);
 
 module.exports = router;

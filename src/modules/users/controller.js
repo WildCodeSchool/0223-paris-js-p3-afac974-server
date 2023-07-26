@@ -61,7 +61,6 @@ const register = async (req, res) => {
 
   try {
     const result = await findByMail(user.mail);
-    console.log("Hello", result);
     if (result.length > 0) {
       res.status(409).send({
         error: " email already exist",
@@ -88,7 +87,6 @@ const addUserFavorite = async (req, res) => {
       });
     } else {
       const isFav = await userFavorite(data);
-      console.log("HELLO", isFav);
       res.status(201).json(isFav);
     }
   } catch (err) {
@@ -97,7 +95,10 @@ const addUserFavorite = async (req, res) => {
 };
 
 const getAllFavoriteById = (req, res) => {
-  const user_id = req.params.id;
+
+
+ const user_id = req.params.id
+
 
   findAllFavoriteById(user_id)
     .then((data) => {
