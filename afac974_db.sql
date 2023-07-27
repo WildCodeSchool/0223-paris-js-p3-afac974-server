@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.18, for macos10.14 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.32, for macos13 (arm64)
 --
--- Host: localhost    Database: project_3
+-- Host: localhost    Database: p3db
 -- ------------------------------------------------------
--- Server version	8.0.18
+-- Server version	8.0.32
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -23,19 +23,19 @@ DROP TABLE IF EXISTS `art`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `art` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int NOT NULL AUTO_INCREMENT,
   `ref_img` varchar(45) NOT NULL,
   `full_title` varchar(100) NOT NULL,
   `short_title` varchar(60) DEFAULT NULL,
   `achievement_date` varchar(60) NOT NULL,
   `dimensions` varchar(45) DEFAULT NULL,
-  `art_number` int(11) DEFAULT NULL,
+  `art_number` int DEFAULT NULL,
   `description` longtext,
   `url_origin` varchar(255) DEFAULT NULL,
   `img_url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `author_id` int(11) NOT NULL,
-  `category_id` int(11) NOT NULL,
-  `technique_id` int(11) NOT NULL,
+  `author_id` int NOT NULL,
+  `category_id` int NOT NULL,
+  `technique_id` int NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_art_author1_idx` (`author_id`),
   KEY `fk_art_category1_idx` (`category_id`),
@@ -43,7 +43,7 @@ CREATE TABLE `art` (
   CONSTRAINT `fk_art_author1` FOREIGN KEY (`author_id`) REFERENCES `author` (`aut_id`),
   CONSTRAINT `fk_art_category1` FOREIGN KEY (`category_id`) REFERENCES `category` (`c_id`),
   CONSTRAINT `fk_art_technique1` FOREIGN KEY (`technique_id`) REFERENCES `technique` (`t_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -64,7 +64,7 @@ DROP TABLE IF EXISTS `author`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `author` (
-  `aut_id` int(11) NOT NULL AUTO_INCREMENT,
+  `aut_id` int NOT NULL AUTO_INCREMENT,
   `firstname` varchar(45) DEFAULT NULL,
   `lastname` varchar(45) DEFAULT NULL,
   `birthdate` date DEFAULT NULL,
@@ -92,7 +92,7 @@ DROP TABLE IF EXISTS `category`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `category` (
-  `c_id` int(11) NOT NULL AUTO_INCREMENT,
+  `c_id` int NOT NULL AUTO_INCREMENT,
   `category_name` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   PRIMARY KEY (`c_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -116,7 +116,7 @@ DROP TABLE IF EXISTS `technique`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `technique` (
-  `t_id` int(11) NOT NULL AUTO_INCREMENT,
+  `t_id` int NOT NULL AUTO_INCREMENT,
   `technique_name` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   PRIMARY KEY (`t_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -140,17 +140,17 @@ DROP TABLE IF EXISTS `user`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `user` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int NOT NULL AUTO_INCREMENT,
   `firstname` varchar(60) NOT NULL,
   `lastname` varchar(60) NOT NULL,
   `user_name` varchar(30) NOT NULL,
   `password` varchar(255) NOT NULL,
   `mail` varchar(45) NOT NULL,
-  `isAdmin` tinyint(4) NOT NULL,
+  `isAdmin` tinyint NOT NULL,
   `profile_picture` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `mail_UNIQUE` (`mail`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -159,7 +159,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'John','Doe','Jojo','root','j.d@gallery.com',1,''),(2,'Omar','Heyy','omar','omar','j.d@omar.com',1,'bg.jpg'),(6,'Omdazpodjapzodci','A NEW ONE','zddza','rodopzajzdaùmkdlùakddipjazot','j.d@apefkefkoeajoejgoeofeojeogjgallery.com',1,''),(7,'ok','A NEW ONE','zddza','$argon2id$v=19$m=65536,t=3,p=4$NEmIeGCCWVzMDqOKCVmuFw$dSyu5d3Wb/Xm4YB5YsY2KXq/XzrHdZnGdxp/oruEakc','abc@abc.com',1,''),(17,'ok','A NEW ONE','zddza','$argon2id$v=19$m=65536,t=3,p=4$IkUNg6KQufPha2/YaiZxEw$4MgTQ82rfxrBSfO4dWO/fnDN3baq57K5OXuiwY2oQ2o','hello@gmail.com',0,''),(18,'LOL','A NEW ONE A NEW ONE','HELLO','$argon2id$v=19$m=65536,t=3,p=4$uYRhu+sZ56rsmT76ONIz1g$yTHCnUhySlZtFchASbbj4pjX4lurEm8lyTIqIsxp9Q4','hello@dzadnazfk.com',0,''),(19,'Naomi','Rose','nrose','$argon2id$v=19$m=65536,t=3,p=4$qqiYvssUoTBqQusc+iRxBA$7WUaDI4wg0MIcqesuJ4MniMojSg8wt6NH4ZTz3hME6k','nrose@mail.com',1,NULL);
+INSERT INTO `user` VALUES (1,'John','Doe','Jojo','root','j.d@gallery.com',1,''),(2,'Omar','Heyy','omar','omar','j.d@omar.com',1,'bg.jpg'),(6,'Omdazpodjapzodci','A NEW ONE','zddza','rodopzajzdaùmkdlùakddipjazot','j.d@apefkefkoeajoejgoeofeojeogjgallery.com',1,''),(7,'ok','A NEW ONE','zddza','$argon2id$v=19$m=65536,t=3,p=4$NEmIeGCCWVzMDqOKCVmuFw$dSyu5d3Wb/Xm4YB5YsY2KXq/XzrHdZnGdxp/oruEakc','abc@abc.com',1,''),(17,'ok','A NEW ONE','zddza','$argon2id$v=19$m=65536,t=3,p=4$IkUNg6KQufPha2/YaiZxEw$4MgTQ82rfxrBSfO4dWO/fnDN3baq57K5OXuiwY2oQ2o','hello@gmail.com',0,''),(18,'LOL','A NEW ONE A NEW ONE','HELLO','$argon2id$v=19$m=65536,t=3,p=4$uYRhu+sZ56rsmT76ONIz1g$yTHCnUhySlZtFchASbbj4pjX4lurEm8lyTIqIsxp9Q4','hello@dzadnazfk.com',0,''),(19,'Naomi','Rose','nrose','$argon2id$v=19$m=65536,t=3,p=4$qqiYvssUoTBqQusc+iRxBA$7WUaDI4wg0MIcqesuJ4MniMojSg8wt6NH4ZTz3hME6k','nrose@mail.com',1,NULL),(20,'Adele','Manga','amanga','$argon2id$v=19$m=65536,t=3,p=4$eqz6O60lkXkCBaLFrV5eVw$OkPF+ayHNjcy0Rp8v5K7BFEQDU9pDWMs7wjSsZCq1D8','adele@mail.com',0,''),(21,'Serge-Patrick','Acka','acka','$argon2id$v=19$m=65536,t=3,p=4$KZx6DexGZg4pCMUQSpx/pA$Dkqz1jnQPrnjaUWk7VtKNtpeCg2DCBaZrOPFp9lX3F0','sp@mail.com',0,''),(22,'Benjamin','Hubert','hub','$argon2id$v=19$m=65536,t=3,p=4$mL3OgeGNXnahjqY5yZT5BQ$yDtO+Exf3iXcX8QZV+Ra6115FbUoNlP985fhQBn/wqA','ben@mail.com',0,''),(23,'Tom','Le Laurain','tom','$argon2id$v=19$m=65536,t=3,p=4$pqXFUtgeXCQThhOcYcXJdw$n+WICE5Ow1u5tAjmzZhRMceLXn4FPBty7d61kPCou1A','tom@mail.com',0,''),(24,'Thomas','Lanjon','tom','$argon2id$v=19$m=65536,t=3,p=4$swIhNxkki9wPvCnm43IKFw$EOREDTqzk81Q2TS0eamTsi3RVPv7ryZHZgtOgfNa23g','thomas@mail.com',0,''),(25,'Kader','Benderdouche','kader','$argon2id$v=19$m=65536,t=3,p=4$I52UYmOcNaHlLuBUalR+ZQ$NuC3upbYV2dleHdaeUc7UcXkql2itYEG47/HAdzt7Lc','kader@mail.com',0,''),(26,'Ornella','Tomboza','ornel','$argon2id$v=19$m=65536,t=3,p=4$s0hoUiWPdO1ZMVCG7P9fqg$XmjoLLqfFNedLw++3pzyXtMnfwMWTtms6UWNHQtK/tg','ornel@mail.com',1,''),(27,'Saverio','Cutolo','sav','$argon2id$v=19$m=65536,t=3,p=4$2bDxHb9ePXdGBJd4DnLq3w$0/znGTDjEBbchkVlhExt99szCNOiGH/Dh70giKKgRtU','sav@mail.com',0,''),(28,'Leo','Messi','leo','$argon2id$v=19$m=65536,t=3,p=4$uanmXlkyCHftDW6J+gbXJQ$8dVAamJNLwab2RJ8pRYFEDpvPC2HXC6R3N+Htt/Gsa0','leo@mail.com',1,''),(29,'Elon','Musk','elon','$argon2id$v=19$m=65536,t=3,p=4$ovI7T2rp4y/8tbHiA8+sJQ$FXWza52kRZiTtlUIag6ipcqgftJOHZU+CF8XvA/NsFc','elon@mail.com',1,''),(30,'Bob','Marley','','$argon2id$v=19$m=65536,t=3,p=4$bNa2/9mqVtxXut7FbNl3xw$zlcMCoVfOMEiC7yQmtQZDoL2WkB1q/zrEwzwOiM62k0','bob@mail.com',0,NULL),(31,'Kilian','Mbappé','','$argon2id$v=19$m=65536,t=3,p=4$KCQ0ggQRBlQdMwpyf2Nm4A$5M16KTG+4FYzb96lwnR5LGLHOts0YWhJRIp4tnwqIIU','kiki@mail.com',1,NULL);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -171,8 +171,8 @@ DROP TABLE IF EXISTS `user_art_favorite`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `user_art_favorite` (
-  `user_id` int(11) NOT NULL,
-  `art_id` int(11) NOT NULL,
+  `user_id` int NOT NULL,
+  `art_id` int NOT NULL,
   PRIMARY KEY (`user_id`,`art_id`),
   KEY `fk_user_has_art_art1_idx` (`art_id`),
   KEY `fk_user_has_art_user1_idx` (`user_id`),
@@ -187,12 +187,12 @@ CREATE TABLE `user_art_favorite` (
 
 LOCK TABLES `user_art_favorite` WRITE;
 /*!40000 ALTER TABLE `user_art_favorite` DISABLE KEYS */;
-INSERT INTO `user_art_favorite` VALUES (1,1),(1,2),(6,4),(6,5),(6,6);
+INSERT INTO `user_art_favorite` VALUES (1,1),(19,1),(26,1),(29,1),(1,2),(19,2),(20,2),(25,2),(26,2),(19,3),(25,3),(6,4),(19,4),(22,4),(26,4),(6,5),(19,5),(6,6),(22,7),(26,7),(19,8),(25,8),(28,8),(19,9),(25,9),(27,9),(27,11),(28,11),(29,11),(20,12),(28,12),(29,13),(20,14),(25,14),(20,15),(24,15),(25,15),(28,15),(24,16),(29,16),(24,17),(22,18),(24,18),(28,18),(24,19),(26,19),(29,19),(27,20),(19,21),(27,21),(19,22),(20,23);
 /*!40000 ALTER TABLE `user_art_favorite` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Dumping routines for database 'project_3'
+-- Dumping routines for database 'p3db'
 --
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -204,4 +204,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-07-16 16:59:11
+-- Dump completed on 2023-07-27 11:00:20
