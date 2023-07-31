@@ -12,6 +12,23 @@ const findAll = () => {
         })
 }
 
+const findByMail = (mail) => {
+    return db
+        .query("select * from user where mail = ?", [mail])
+        .then(([data]) => {
+            return data;
+        })
+        .catch((err) =>{
+            console.error("Error ", err)
+            return err;
+        })
+}
+
+const getById = async (id) => {
+    const [user] = await db.query("SELECT id, firstname, lastname , mail, isAdmin FROM user WHERE id = ?", [id]);
+    return user;
+}
+
 const modifyOneUser = (user, userId) => {
     return db
         .query('update user set ? where id = ?', [user, userId])
@@ -34,17 +51,19 @@ const findOneUser = (id) => {
         })
 }
 
+
 const addUser = (user) => {
     const { firstname , lastname, user_name, password, mail, isAdmin, profile_picture } = user
     return db 
         .query("insert into user (firstname , lastname, user_name, password, mail, isAdmin, profile_picture) values (?, ?, ?, ?, ?, ?, ?)",
         [firstname , lastname, user_name, password, mail, isAdmin, profile_picture])
         .then(([data]) => {
-            return { id: data.insertId, ...user}
+            return { id: data.insertId, ...user }
         })
-        .catch((err) => {
-            console.error(err); })
+        // .catch((err) => {
+        //     console.error(err); })
 }
+
 
 const removeUser = (id) => {
     return db
@@ -55,7 +74,41 @@ const removeUser = (id) => {
             })
 }
 
+const userFavorite = (favorite) => {
+    const {user_id, art_id} = favorite
+    return db
+        .query(" insert into user_art_favorite (user_id, art_id) values (?, ?)", [user_id, art_id])
+        .then(([data]) => {
+            return {...favorite}
+        })
+}
 
-module.exports = { findAll, findOneUser, addUser,removeUser, modifyOneUser }
+const findByFavorite = (data) => {
+    const {user_id, art_id} = data
+    return db
+        .query("select * from user_art_favorite where user_id = ? and art_id = ?", [user_id, art_id])
+        .then(([data]) => {
+            return data;
+        })
+       
+}
+
+const findAllFavoriteById = (user_id) => {
+    return db
+        .query('select * from art as a join user_art_favorite as uaf on a.id = uaf.art_id join user as u on u.id= uaf.user_id where user_id = ? ', [user_id])
+        .then(([data]) => {
+            return data
+        })
+}
+const removeUserFavorite = (user_id, art_id)=>{
+    return db
+    .query('DELETE from user_art_favorite as uaf WHERE user_id = ?  and art_id = ?', [user_id , art_id])
+    .then(([data]) => data )
+    .catch((err) => {
+    console.error(err)
+        })
+}
+ 
+module.exports = { findAll, findOneUser, addUser,removeUser, modifyOneUser, findByMail, userFavorite, findByFavorite, findAllFavoriteById, getById, removeUserFavorite }
 
 
