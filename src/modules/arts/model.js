@@ -55,8 +55,6 @@ const addArt = (art, img_url) => {
         .then(([data]) => {
             return { id: data.insertId, ...art, img_url}
         })
-        .catch((err) => {
-            console.error(err); })
 }
 
 

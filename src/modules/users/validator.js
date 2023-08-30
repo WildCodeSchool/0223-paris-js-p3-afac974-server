@@ -14,7 +14,6 @@ const validateAddUser = (req, res, next) => {
         errors.push({ field : "mail", message : "This mail is required"})
     }
 
-    // const mailRegex = /[a-z0-9._]+@makesense.org/;
     const mailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
 
     if (!mailRegex.test(mail)) {

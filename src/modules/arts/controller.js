@@ -30,21 +30,38 @@ const getOneArt = (req, res) => {
 
 const createArt = (req, res) => {
   const art = req.body;
-  const uploadedFilePath =
-  req.protocol + '://' + req.get('host') + '/upload/' + req.files[0].filename;
+
+  if (!req.files || !req.files[0] || !req.files[0].filename) {
+    return res.status(400).json({ message: 'Une oeuvre doit être ajoutée' });
+  }
+  if (!art.full_title || art.full_title.trim() === '') {
+    return res.status(400).json({ message: 'Le titre de l\'oeuvre doit être ajouté' });
+  }
+  if (!art.achievement_date) {
+    return res.status(400).json({ message: 'Date de réalisation est obligatoire.' });
+  }
+
+  const uploadedFilePath = req.protocol + '://' + req.get('host') + '/upload/' + req.files[0].filename;
 
   addArt(art, uploadedFilePath)
     .then((result) => {
       res.status(201).json(result);
     })
-    .catch((err) => res.status(500).json({ message: 'Server error' }));
+    .catch((err) => {
+      if (err.code === 'ER_DUP_ENTRY') {
+        return res.status(400).json({ error: 'DUPLICATE_REF_IMG', message: 'Cette référence d\'oeuvre existe déjà.' });
+      }
+      console.error("Erreur lors de l'ajout de l'oeuvre:", err);
+      res.status(500).json({ message: 'Server error' })
+    });
 };
+
 
 const putOneArt = (req, res) => {
   const art = req.body;
   const id = req.params.id;
   const uploadedFilePath =
-  req.protocol + '://' + req.get('host') + '/upload/' + req.files[0].filename;
+    req.protocol + '://' + req.get('host') + '/upload/' + req.files[0].filename;
 
   modifyOneArt(art, uploadedFilePath, id).then((result) => {
     if (result.affectedRows === 1) {
